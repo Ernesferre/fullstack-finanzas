@@ -11,6 +11,10 @@ export const errorHandler: ErrorRequestHandler = (err, _req, res, _next) => {
     res.status(err.statusCode).json({ error: err.message });
     return;
   }
+  if (err.code === "P2002") {
+    res.status(409).json({ error: "Ya existe un registro con esos datos" });
+    return;
+  }
   console.error(err);
   res.status(500).json({ error: "Error interno del servidor" });
 };

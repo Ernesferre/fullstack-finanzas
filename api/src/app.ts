@@ -3,6 +3,8 @@ import cookieParser from "cookie-parser";
 import { prisma } from "./lib/prisma.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { authRouter } from "./routes/auth.routes.js";
+import { categoriesRouter } from "./routes/categories.routes.js";
+import { transactionsRouter } from "./routes/transactions.routes.js";
 
 export const app = express();
 app.use(express.json());
@@ -15,5 +17,7 @@ app.get("/health", async (_req, res) => {
 
 // Acá van a ir las rutas de auth
 app.use("/auth", authRouter);
+app.use("/categories", categoriesRouter);
+app.use("/transactions", transactionsRouter);
 
 app.use(errorHandler); // siempre al final

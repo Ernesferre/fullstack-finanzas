@@ -1,0 +1,58 @@
+@token = {{login.response.body.token}}
+
+###
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Ernesto",
+  "email": "ernesto@test.com",
+  "password": "0000234567"
+}
+
+###
+# @name login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "ernesto@test.com",
+  "password": "0000234567"
+}
+
+###
+GET http://localhost:3000/auth/me
+Authorization: Bearer {{token}}
+
+###
+POST http://localhost:3000/categories
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Comida",
+  "type": "EXPENSE"
+}
+
+###
+GET http://localhost:3000/categories
+Authorization: Bearer {{token}}
+
+
+###
+POST http://localhost:3000/transactions
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "type": "EXPENSE",
+  "currency": "ARS",
+  "amount": 15000,
+  "date": "2026-11-24",
+  "description": "Supermercado",
+  "categoryId": "92dc9ca8-7993-4bc9-8ca1-49f253017c5e"
+}
+
+###
+GET http://localhost:3000/transactions
+Authorization: Bearer {{token}}
